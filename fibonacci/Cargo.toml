@@ -1,0 +1,8 @@
+[package]
+name = "fibonacci"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+entrypoint = { git = "https://github.com/lita-xyz/valida-rs.git", branch = "main" }
+getrandom = "0.2.15"
