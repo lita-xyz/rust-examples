@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-entrypoint = { git = "https://github.com/lita-xyz/valida-rs.git", branch = "read-write-impl" }
-serde_json = { version = "1", no-default-features = true }
-serde = { version = "1", no-default-features = true, features = ["derive"] }
+entrypoint = { git = "https://github.com/lita-xyz/valida-rs.git", branch = "main" }
+serde_json = { version = "1", default-features = false }
+serde = { version = "1", default-features = false, features = ["derive"] }
 jsonpath_lib = "0.3.0"
