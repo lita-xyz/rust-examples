@@ -17,7 +17,7 @@ To put the Valida toolchain on your PATH, you can enter the Valida shell by runn
 Build the project, from the root directory of this repo:
 
 ```
-cargo +valida build --release
+cargo +valida build
 ```
 
 To run the program, in the Valida shell, from the root directory of this repo:
