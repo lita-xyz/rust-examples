@@ -20,14 +20,6 @@ Build the project, from the root directory of this repo:
 valida> cargo +valida build
 ```
 
-Run the program in native code:
-
-```bash
-$ echo '{"path":"$.foo.bar","expected":{"baz":1},"json":{"foo":{"bar":{"baz":1}}}}' | cargo run
-path: $.foo.bar
-contains json: {"baz":1}
-```
-
 Run the program in Valida:
 
 ```bash
