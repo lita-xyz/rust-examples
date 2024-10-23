@@ -26,18 +26,6 @@ To put the Valida toolchain on your PATH, you can enter the Valida shell by runn
 
 ## Usage
 
-Build the project for native code, from the root directory of this repo:
-
-```
-cargo build --release
-```
-
-To run the program in native code:
-
-```
-./target/release/conway
-```
-
 Build the project for Valida, from the root directory of this repo:
 
 ```
