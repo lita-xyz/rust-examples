@@ -41,7 +41,7 @@ To run the program in native code:
 Build the project for Valida, from the root directory of this repo:
 
 ```
-cargo +valida build --release
+cargo +valida build
 ```
 
 To run the program in Valida, in the Valida shell, from the root directory of this repo:
