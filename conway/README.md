@@ -29,13 +29,13 @@ To put the Valida toolchain on your PATH, you can enter the Valida shell by runn
 Build the project for Valida, from the root directory of this repo:
 
 ```
-cargo +valida build
+cargo +valida build --release
 ```
 
 To run the program in Valida, in the Valida shell, from the root directory of this repo:
 
 ```
-valida> valida run ./target/delendum-unknown-baremetal-gnu/debug/conway log
+valida> valida run ./target/delendum-unknown-baremetal-gnu/release/conway log
 ```
 
 The `run` command will load the binary, and execute the program. The program will then run, and print the output to the console and the file `log` in the current directory.
