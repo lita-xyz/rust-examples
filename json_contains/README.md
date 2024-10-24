@@ -17,14 +17,14 @@ To put the Valida toolchain on your PATH, you can enter the Valida shell by runn
 Build the project, from the root directory of this repo:
 
 ```bash
-valida> cargo +valida build
+valida> cargo +valida build --release
 ```
 
 Run the program in Valida:
 
 ```bash
-valida> 
-valida> echo '{"path":"$.foo.bar","expected":{"baz":1},"json":{"foo":{"bar":{"baz":1}}}}' | valida run target/delendum-unknown-baremetal-gnu/debug/json_contains log
+valida>
+valida> echo '{"path":"$.foo.bar","expected":{"baz":1},"json":{"foo":{"bar":{"baz":1}}}}' | valida run target/delendum-unknown-baremetal-gnu/release/json_contains log
 path: $.foo.bar
 contains json: {"baz":1}
 ```
