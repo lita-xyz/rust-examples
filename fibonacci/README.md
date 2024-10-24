@@ -7,7 +7,7 @@ This is a simple program that calculates the n-th fibonacci number and proves th
 Build the project, from the root directory of this repo:
 
 ```
-cargo +valida build
+cargo +valida build --release
 ```
 
 To run the program, in the Valida shell, from the root directory of this repo:
