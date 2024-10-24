@@ -5,5 +5,3 @@ edition = "2021"
 
 [dependencies]
 entrypoint = { git = "https://github.com/lita-xyz/valida-rs.git", branch = "main" }
-getrandom = "0.2.15"
-rand = "0.8.5"
