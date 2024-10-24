@@ -22,8 +22,6 @@ name = "calculator"
 version = "0.1.0"
 dependencies = [
  "entrypoint",
- "getrandom",
- "rand",
 ]
 
 [[package]]
