@@ -2,11 +2,11 @@
 //! This code is for illustrative purposes only it should not be assumed to be correct.
 #![no_main]
 
-use entrypoint::io::InputTape;
+use valida_rs::io::InputTape;
 use serde::Deserialize;
 use serde_json::Value;
 
-entrypoint::entrypoint!(main);
+valida_rs::entrypoint!(main);
 
 fn main() {
     let mut de = serde_json::Deserializer::from_reader(InputTape);
@@ -17,8 +17,8 @@ fn main() {
     } = Input::deserialize(&mut de).expect("could not parse input");
 
     validate_json_path(&path, &expected, &json);
-    entrypoint::io::println(&format!("path: {}", path));
-    entrypoint::io::println(&format!("contains json: {}", expected));
+    valida_rs::io::println(&format!("path: {}", path));
+    valida_rs::io::println(&format!("contains json: {}", expected));
 }
 
 #[derive(Deserialize)]
