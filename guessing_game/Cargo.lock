@@ -24,18 +24,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
-name = "entrypoint"
-version = "0.1.0"
-source = "git+https://github.com/lita-xyz/valida-rs.git?branch=main#e9c0f93b85a83b31bd8fce755b547bd2f0b53900"
-dependencies = [
- "bincode",
- "getrandom",
- "once_cell",
- "rand",
- "serde",
-]
-
-[[package]]
 name = "getrandom"
 version = "0.2.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -50,9 +38,9 @@ dependencies = [
 name = "guessing_game"
 version = "0.1.0"
 dependencies = [
- "entrypoint",
  "getrandom",
  "rand",
+ "valida-rs",
 ]
 
 [[package]]
@@ -160,6 +148,18 @@ name = "unicode-ident"
 version = "1.0.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e91b56cd4cadaeb79bbf1a5645f6b4f8dc5bde8834ad5894a8db35fda9efa1fe"
+
+[[package]]
+name = "valida-rs"
+version = "0.1.0"
+source = "git+https://github.com/lita-xyz/valida-rs.git?branch=main#84df845d672aa72f7aa0d591caa3e5201dac2b75"
+dependencies = [
+ "bincode",
+ "getrandom",
+ "once_cell",
+ "rand",
+ "serde",
+]
 
 [[package]]
 name = "wasi"

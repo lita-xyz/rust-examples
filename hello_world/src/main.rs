@@ -1,7 +1,7 @@
 #![no_main]
 
-entrypoint::entrypoint!(main);
+valida_rs::entrypoint!(main);
 
 pub fn main() {
-    entrypoint::io::println("Hello, world!");
+    valida_rs::io::println("Hello, world!");
 }

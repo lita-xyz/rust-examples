@@ -2,7 +2,7 @@
 
 use conway::Universe;
 
-entrypoint::entrypoint!(main);
+valida_rs::entrypoint!(main);
 
 pub fn main() {
     let mut universe = Universe::new();
@@ -13,7 +13,7 @@ pub fn main() {
         for j in 0..10 {
             let idx = universe.get_index(i, j);
             let cell = universe.get_cells()[idx] as u8;
-            entrypoint::io::println(cell.to_string().as_str())
+            valida_rs::io::println(cell.to_string().as_str())
         }
     }
 }
