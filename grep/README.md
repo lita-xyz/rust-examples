@@ -1,6 +1,6 @@
-# Hello World in Valida
+# Grep in Valida
 
-This is a simple program that prints "Hello, World!" in Valida. You can use this as a template for your projects which create Valida proofs of execution of Rust code.
+This is a simple program which users can enter a query and a string of contents, and the program will return all the words in the contents that contain the query.
 
 ## System requirements
 
@@ -25,7 +25,7 @@ cargo +valida build --release
 To run the program, in the Valida shell, from the root directory of this repo:
 
 ```
-valida> valida run ./target/delendum-unknown-baremetal-gnu/release/my-project log
+valida> valida run ./target/delendum-unknown-baremetal-gnu/release/grep log
 ```
 
-The `run` command runs the program and print "Hello, World!" to the console and the file `log` in the current directory.
+The `run` command runs the program and asks the user for a query and contents, then prints the results to the console and the file `log` in the current directory.
