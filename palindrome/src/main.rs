@@ -1,7 +1,6 @@
 #![no_main]
 
-valida_rs::entrypoint!(main);
-
+#[no_mangle]
 pub fn main() {
     valida_rs::io::println("Please enter a word or phrase:");
     let word = match valida_rs::io::read_line::<String>() {
