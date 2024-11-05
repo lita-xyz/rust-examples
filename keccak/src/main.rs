@@ -14,7 +14,13 @@ pub fn main() {
     keccak.update(input.as_bytes());
     keccak.finalize(&mut digest);
 
-    let mut hex_buf = [0u8; 32];
-    let hex = base16ct::lower::encode_str(&digest, &mut hex_buf).unwrap();
+    let mut hex_buf = [0u8; 64];
+    let hex = match base16ct::lower::encode_str(&digest, &mut hex_buf) {
+        Ok(r) => r,
+        Err(e) => {
+            entrypoint::io::println(&e.to_string());
+            return;
+        },
+    };
     entrypoint::io::println(&format!("keccak digest: 0x{}", hex));
 }
