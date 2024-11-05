@@ -1,6 +1,6 @@
 #![no_main]
 
-valida_rs::entrypoint!(main);
+#[no_mangle]
 
 pub fn main() {
     valida_rs::io::println("Please enter a number from 0 to 46:");

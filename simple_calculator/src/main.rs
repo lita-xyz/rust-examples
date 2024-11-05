@@ -1,6 +1,6 @@
 #![no_main]
 
-valida_rs::entrypoint!(main);
+#[no_mangle]
 
 fn main() {
     valida_rs::io::println("Welcome to the Simple Calculator!");
