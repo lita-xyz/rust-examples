@@ -1,6 +1,6 @@
 #![no_main]
 
-valida_rs::entrypoint!(main);
+#[no_mangle]
 
 // searches a string for a substring and returns the match
 pub fn main() {
