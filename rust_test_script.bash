@@ -1,10 +1,21 @@
 #!/bin/bash
 
+# This script tests the crates in the rust-examples directory.
+# It builds each crate and runs it on the Valida VM and the x86_64-unknown-linux-gnu host, comparing the VM output to the host output.
+# It skips any crates that don't have a input file in the test_data directory.
+# For the guessing game crate, it is actually random on the host machine so we need to give it the expected output by hand.
+# To add a new crate to the test, add a directory with the same name as the crate to the test_data directory and put the input file in it.
+# If there is no input, add an empty input file.
+# If the crate has randomness, you will need to give it the expected output by hand. Add the crate name to L48 below.
+# Make sure that you have set the vm_executable variable to the path to the valida-vm executable (on L15 below).
+# If your host is not x86_64 linux, you will need to change the target in the cargo run command on L57 below.
+# Simply run the script with: bash rust_test_script.bash.
+
 # configuration
 test_data_dir='test_data'
 crates_dir='.'
 # path to the valida-vm executable
-vm_executable='../12Sep/valida-toolchain/valida-vm/target/release/valida'
+vm_executable='../valida-toolchain/valida-vm/target/release/valida'
 
 # utilities
 function fail {
@@ -20,14 +31,6 @@ test -x "$vm_executable" || fail "the vm executable '${vm_executable}' is not ex
 for crate_test_dir in "$test_data_dir"/*
 do {
   crate=$(basename "${crate_test_dir}")
-
-  # # check that the input nd output files exist
-  # if ! test -f "${crate_test_dir}/input" || ! test -f "${crate_test_dir}/output"
-  # then {
-  #   echo "skipping ${crate}, missing test data"
-  #   continue
-  # }
-  # fi
 
   # build crate, silently to avoid polluting the output
   echo "building ${crate}"
