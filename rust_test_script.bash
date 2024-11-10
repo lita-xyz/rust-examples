@@ -15,7 +15,7 @@
 test_data_dir='test_data'
 crates_dir='.'
 # path to the valida-vm executable
-vm_executable='../valida-toolchain/valida-vm/target/release/valida'
+vm_executable='/valida-toolchain/bin/valida'
 
 # utilities
 function fail {
