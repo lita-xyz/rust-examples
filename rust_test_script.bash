@@ -55,6 +55,13 @@ do {
   # Run on Valida VM to generate the actual output
   "$vm_executable" run "${crates_dir}/${crate}/target/delendum-unknown-baremetal-gnu/debug/${crate}" log \
     < "${crate_test_dir}/input" > "${crate_test_dir}/actual_output"
-  diff <(tr -d '\n' < "${crate_test_dir}/actual_output") <(tr -d '\n' < "${crate_test_dir}/expected_output") && echo "${crate} test passed"
+  diff <(tr -d '\n' < "${crate_test_dir}/actual_output") <(tr -d '\n' < "${crate_test_dir}/expected_output") && echo "${crate} execution test passed"
+
+  # Prove and verify
+  echo "PROVING $crate"
+  "$vm_executable" prove "${crates_dir}/${crate}/target/delendum-unknown-baremetal-gnu/debug/${crate}" proof \
+    < "${crate_test_dir}/input" > "${crate_test_dir}/actual_output"
+  echo "VERIFYING $crate"
+  "$vm_executable" verify "${crates_dir}/${crate}/target/delendum-unknown-baremetal-gnu/debug/${crate}" proof
 }
 done
