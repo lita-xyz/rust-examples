@@ -1,0 +1,20 @@
+{
+  "path": "$.store.book[0].title",
+  "json": {
+    "store": {
+      "book": [
+        {
+          "title": "The Lord of the Rings",
+          "author": "J.R.R. Tolkien",
+          "price": 22.99
+        },
+        {
+          "title": "Dune",
+          "author": "Frank Herbert",
+          "price": 19.99
+        }
+      ]
+    }
+  },
+  "expected": "The Lord of the Rings"
+}

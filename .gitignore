@@ -1,3 +1,6 @@
 /target
 */target/
 log
+**/actual_output
+**/expected_output
+!test_data/guessing_game/expected_output
