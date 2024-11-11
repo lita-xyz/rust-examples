@@ -35,7 +35,7 @@ do {
   # build crate, silently to avoid polluting the output
   echo "building ${crate}"
   pushd "${crates_dir}/${crate}"
-  if ! cargo +valida build --quiet
+  if ! cargo +delendum build --quiet
   then
     echo "failed to build ${crate}"
     popd
@@ -62,6 +62,6 @@ do {
   "$vm_executable" prove "${crates_dir}/${crate}/target/delendum-unknown-baremetal-gnu/debug/${crate}" proof \
     < "${crate_test_dir}/input" > "${crate_test_dir}/actual_output"
   echo "VERIFYING $crate"
-  "$vm_executable" verify "${crates_dir}/${crate}/target/delendum-unknown-baremetal-gnu/debug/${crate}" proof
+  "$vm_executable" verify "${crates_dir}/${crate}/target/delendum-unknown-baremetal-gnu/debug/${crate}" proof -o log
 }
 done
