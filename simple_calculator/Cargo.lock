@@ -3,7 +3,7 @@
 version = 4
 
 [[package]]
-name = "calculator"
+name = "simple_calculator"
 version = "0.1.0"
 dependencies = [
  "valida-rs",
