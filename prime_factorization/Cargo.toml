@@ -1,5 +1,5 @@
 [package]
-name = "prime-factorization"
+name = "prime_factorization"
 version = "0.1.0"
 edition = "2021"
 
