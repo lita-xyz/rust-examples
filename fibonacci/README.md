@@ -13,7 +13,7 @@ cargo +valida build --release
 To run the program, in the Valida shell, from the root directory of this repo:
 
 ```
-valida> valida run ./target/delendum-unknown-baremetal-gnu/release/fibonacci log
+valida> valida run ./target/valida-unknown-baremetal-gnu/release/fibonacci log
 ```
 
 The `run` command runs the program, prompting for an input, and print the output to the console and the file `log` in the current directory.

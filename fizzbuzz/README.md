@@ -24,7 +24,7 @@ cargo +valida build --release
 To run the program, in the Valida shell, from the root directory of this repo:
 
 ```
-valida> valida run ./target/delendum-unknown-baremetal-gnu/release/fizzbuzz log
+valida> valida run ./target/valida-unknown-baremetal-gnu/release/fizzbuzz log
 ```
 
 The `run` command runs the program and asks the user for a number, then prints the numbers from 1 to that number, replacing any number divisible by three with the word "fizz", and any number divisible by five with the word "buzz", and any number divisible by both three and five with the word "fizzbuzz", to the console and the file `log` in the current directory.

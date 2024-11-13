@@ -25,7 +25,7 @@ cargo +valida build --release
 To run the program, in the Valida shell, from the root directory of this repo:
 
 ```
-valida> valida run ./target/delendum-unknown-baremetal-gnu/release/palindrome log
+valida> valida run ./target/valida-unknown-baremetal-gnu/release/palindrome log
 ```
 
 The `run` command runs the program and asks the user for a word or phrase, then prints whether it is a palindrome to the console and the file `log` in the current directory.
