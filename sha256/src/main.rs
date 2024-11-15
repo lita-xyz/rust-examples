@@ -14,31 +14,13 @@
  * THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-// Compile & link instructions
-//
-// - Compile dependencies:
-// $ /valida-toolchain/bin/clang --target=delendum-unknown-baremetal-gnu -c llvm-valida/DelendumEntryPoint.c
-// $ /valida-toolchain/bin/clang --target=delendum-unknown-baremetal-gnu -c llvm-valida/examples/rust/read_stdin.c
-// $ /valida-toolchain/bin/clang --target=delendum-unknown-baremetal-gnu -c llvm-valida/examples/rust/write_stdout.c
-//
-// - Compile and link program:
-// $ rustc +valida --crate-type=bin --target=delendum-unknown-baremetal-gnu sha256.rs -C linker=/valida-toolchain/bin/ld.lld -C link-args="--script=llvm-valida/valida.ld DelendumEntryPoint.o read_stdin.o write_stdout.o /valida-toolchain/lib/delendum-unknown-baremetal-gnu/libc.a /valida-toolchain/lib/delendum-unknown-baremetal-gnu/libm.a --noinhibit-exec"
-
 // This code mostly comes from https://github.com/RustCrypto/hashes . Lita modified this code
 // in order to be able to compile and run it on Valida.
 
-#![no_std]
 #![no_main]
-#![feature(start)]
 #![allow(clippy::many_single_char_names)]
 
 use core::convert::TryInto;
-use core::panic::PanicInfo;
-
-#[panic_handler]
-fn panic(_info: &PanicInfo) -> ! {
-    loop {}
-}
 
 /// Round constants for SHA-256 family of digests
 pub static K32: [u32; 64] = [
