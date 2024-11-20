@@ -30,4 +30,7 @@ pub fn main() {
     println!("{:<10}", value);       // Left-align with width 10 -> "test      "
     println!("{:^10}", value);       // Center-align with width 10 -> "   test   "
     println!("{:0>5}", value);       // Pad with zeros on left -> "0test"
+
+    // Test panic
+    panic!("Test that this panic message is shown");
 }
