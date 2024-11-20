@@ -2,12 +2,12 @@ use secp256k1::ecdsa::Signature;
 use secp256k1::hashes::{sha256, Hash};
 use secp256k1::{Message, PublicKey, Secp256k1};
 
-#[cfg(not(target_arch = "delendum"))]
+#[cfg(not(target_arch = "valida"))]
 use secp256k1::rand::rngs::OsRng;
 
 const MSG: &str = "Hello World!";
 
-#[cfg(not(target_arch = "delendum"))]
+#[cfg(not(target_arch = "valida"))]
 fn print_fresh_keypair_and_signature() {
     use std::io::Write;
 
@@ -62,7 +62,7 @@ fn verify_signature_based_on_hardcoded_signature_and_public_key() {
 }
 
 fn main() {
-    #[cfg(not(target_arch = "delendum"))]
+    #[cfg(not(target_arch = "valida"))]
     print_fresh_keypair_and_signature();
 
     // just to make sure that verification with harcoded data passes on host
