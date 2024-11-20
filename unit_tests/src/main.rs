@@ -10,8 +10,7 @@ pub fn main() {
 
     // Print errors to stdout
     eprintln!("Error message");
-    eprintln!("Error message");    // Goes to stdout/output tape
-    
+    eprint!("Error without newline");
     // Test format specifiers
     let value = "test";
     let number = 42;
