@@ -4,19 +4,15 @@
 
 // searches a string for a substring and returns the match
 pub fn main() {
-    valida_rs::io::println("Please enter the substring to search for:");
+    println!("Please enter the substring to search for:");
     let query = valida_rs::io::read_line::<String>().unwrap();
-    valida_rs::io::println("Please enter the contents to search in:");
+    println!("Please enter the contents to search in:");
     let contents = valida_rs::io::read_line::<String>().unwrap();
     
-    valida_rs::io::println(
-        &format!("Searching for '{}' in '{}'.", query, contents)
-    );
+    println!("Searching for '{}' in '{}'.", query, contents);
     
     let results = search_case_insensitive(&query, contents.as_str());
-    valida_rs::io::println(
-        &format!("Words that contain '{}': {:?}", query, results)
-    );
+    println!("Words that contain '{}': {:?}", query, results);
 }
 
 pub fn search_case_insensitive<'a>(

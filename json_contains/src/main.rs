@@ -17,8 +17,8 @@ fn main() {
     } = Input::deserialize(&mut de).expect("could not parse input");
 
     validate_json_path(&path, &expected, &json);
-    valida_rs::io::println(&format!("path: {}", path));
-    valida_rs::io::println(&format!("contains json: {}", expected));
+    println!("path: {}", path);
+    println!("contains json: {}", expected);
 }
 
 #[derive(Deserialize)]
