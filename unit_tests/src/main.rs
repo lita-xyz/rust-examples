@@ -8,16 +8,18 @@ pub fn main() {
     // Print with newline
     println!("Hello");
 
-    // Print errors to stdout
-    eprintln!("Error message");
-    eprint!("Error without newline");
+    // Print errors to stdout. This is tested to work in Valida when the test was added.
+    // Commented out because they are not printed to stdout in host and the test output fails with the test script.
+    // eprintln!("Error message"); 
+    // eprint!("Error without newline");
     // Test format specifiers
     let value = "test";
     let number = 42;
     let float_num = 3.14159;
 
     println!("{}", value);           // Display trait -> "test"
-    println!("{:p}", &value);        // Pointer address -> "0x7fff..." 
+    // commented out because the test script fails because this is different in host.
+    // println!("{:p}", &value);        // Pointer address -> "0x7fff..." 
     println!("{:b}", number);        // Binary -> "101010"
     println!("{:x}", number);        // Hexadecimal (lowercase) -> "2a"
     println!("{:X}", number);        // Hexadecimal (uppercase) -> "2A"
