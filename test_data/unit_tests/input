@@ -1,0 +1,9 @@
+testing
+2345
+we34
+still testing
+is this working?
+reading?
+I need to get to 100 bytes. So I will add some more text here.
+And then I have to test reading a line.
+OK it read the line. The 100 bytes finished in the middle of the last line, Then it read till the end of the line.

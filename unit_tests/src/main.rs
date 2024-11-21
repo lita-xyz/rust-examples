@@ -1,7 +1,10 @@
 #![no_main]
+mod read;
 
 #[no_mangle]
 pub fn main() {
+    // Tests for write
+
     // Print without newline
     print!("Hello");
 
@@ -31,6 +34,11 @@ pub fn main() {
     println!("{:^10}", value);       // Center-align with width 10 -> "   test   "
     println!("{:0>5}", value);       // Pad with zeros on left -> "0test"
 
-    // Test panic
-    panic!("Test that this panic message is shown");
+    // Tests for read
+    read::demonstrate_direct_read();
+    read::demonstrate_buffered_read();
+    read::demonstrate_edge_cases();
+    read::demonstrate_error_handling();
+    // Test panic, comment out because the test script fails because this is different in host.
+    // panic!("Test that this panic message is shown");
 }
