@@ -21,8 +21,8 @@ pub fn check_prime_factorization(x: u32, ys: &[u32]) -> bool {
 }
 
 pub fn is_prime(x: u32) -> bool {
-    for y in 0..x {
-        if y % x != 0 {
+    for y in 2..x {
+        if x % y == 0 {
             return false;
         }
     }
