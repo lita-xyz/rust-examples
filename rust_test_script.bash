@@ -62,6 +62,6 @@ do {
   "$vm_executable" prove "${crates_dir}/${crate}/target/valida-unknown-baremetal-gnu/debug/${crate}" proof \
     < "${crate_test_dir}/input" > "${crate_test_dir}/actual_output"
   echo "VERIFYING $crate"
-  "$vm_executable" verify "${crates_dir}/${crate}/target/valida-unknown-baremetal-gnu/debug/${crate}" proof
+  "$vm_executable" verify "${crates_dir}/${crate}/target/valida-unknown-baremetal-gnu/debug/${crate}" proof -o log
 }
 done
