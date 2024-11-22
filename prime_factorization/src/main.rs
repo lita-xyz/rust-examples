@@ -6,7 +6,7 @@ valida_rs::entrypoint!(main);
 
 pub fn main() {
     valida_rs::io::println("Please enter a 32-bit number:");
-    // Read a line from stdin and parse it as an u8.
+    // Read a line from stdin and parse it as a u32.
     let x = read_number();
 
     valida_rs::io::println("Please enter the number of prime factors (with multiplicity):");
@@ -18,7 +18,7 @@ pub fn main() {
         ys.push(read_number());
     }
 
-    if check_prime_factorization(x, ys) {
+    if check_prime_factorization(x, ys.as_ref()) {
         valida_rs::io::println("Verified prime factorization of:");
         valida_rs::io::println(&x.to_string());
     } else {

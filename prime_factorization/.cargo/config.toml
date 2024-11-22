@@ -1,7 +1,7 @@
 [build]
-target = "delendum-unknown-baremetal-gnu"
+target = "valida-unknown-baremetal-gnu"
 
-[target.delendum-unknown-baremetal-gnu]
+[target.valida-unknown-baremetal-gnu]
 linker = "/valida-toolchain/bin/ld.lld"
 rustflags = [
     "-C", "link-arg=/valida-toolchain/DelendumEntryPoint.o",

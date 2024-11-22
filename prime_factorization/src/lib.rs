@@ -9,10 +9,22 @@ pub fn read_number() -> u32 {
     }
 }
 
-pub fn check_prime_factorization(x: u32, ys: Vec<u32>) -> bool {
+pub fn check_prime_factorization(x: u32, ys: &[u32]) -> bool {
     let mut z = 1;
     for y in ys {
-        z *= y;
+        if !is_prime(*y) {
+            return false;
+        }
+        z *= *y;
     }
     z == x
+}
+
+pub fn is_prime(x: u32) -> bool {
+    for y in 0..x {
+        if y % x != 0 {
+            return false;
+        }
+    }
+    true
 }
