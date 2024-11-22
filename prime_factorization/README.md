@@ -13,5 +13,5 @@ valida> cargo +valida build
 To run the program, in the Valida shell, from the root directory of this repo:
 
 ```
-valida> valida run ./target/delendum-unknown-baremetal-gnu/debug/prime_factorization log
+valida> valida run ./target/valida-unknown-baremetal-gnu/debug/prime_factorization log
 ```
