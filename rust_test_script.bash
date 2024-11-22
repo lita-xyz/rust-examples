@@ -35,7 +35,7 @@ do {
   # build crate, silently to avoid polluting the output
   echo "building ${crate}"
   pushd "${crates_dir}/${crate}"
-  if ! cargo +delendum build --quiet
+  if ! cargo +valida build --quiet
   then
     echo "failed to build ${crate}"
     popd
