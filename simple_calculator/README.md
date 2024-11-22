@@ -23,7 +23,7 @@ cargo +valida build --release
 To run the program, in the Valida shell, from the root directory of this repo:
 
 ```
-valida> valida run ./target/delendum-unknown-baremetal-gnu/release/calculator log
+valida> valida run ./target/valida-unknown-baremetal-gnu/release/calculator log
 ```
 
 The `run` command runs the program, and starts the program. The log of the program contains the program history.

@@ -25,7 +25,7 @@ cargo +valida build --release
 To run the program, in the Valida shell, from the root directory of this repo:
 
 ```
-valida> valida run ./target/delendum-unknown-baremetal-gnu/release/factorial log
+valida> valida run ./target/valida-unknown-baremetal-gnu/release/factorial log
 ```
 
 The `run` command runs the program and asks the user for a number, then prints the factorial of that number to the console and the file `log` in the current directory.

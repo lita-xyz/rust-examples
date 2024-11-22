@@ -23,7 +23,7 @@ cargo +valida build --release
 To run the program, in the Valida shell, from the root directory of this repo:
 
 ```
-valida> valida run ./target/delendum-unknown-baremetal-gnu/release/guessing_game log
+valida> valida run ./target/valida-unknown-baremetal-gnu/release/guessing_game log
 ```
 
 The `run` command runs the program, and starts the game. The log of the game contains the game history.
