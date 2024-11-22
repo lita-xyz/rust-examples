@@ -1,6 +1,7 @@
-# Fizz Buzz in Valida
+# Unit tests in Valida
 
-Fizz buzz is a word game. Players take turns to count incrementally, replacing any number divisible by three with the word "fizz", and any number divisible by five with the word "buzz", and any number divisible by both three and five with the word "fizzbuzz".
+This is a program that tests the Valida standard library. It is a template for writing your own unit tests.
+
 ## System requirements
 
 This template supports x86-64 Linux. [`rustup`](https://www.rust-lang.org/tools/install) is required. Arch Linux and Ubuntu are specifically supported, with other platforms possibly requiring some tinkering to make work.
@@ -24,7 +25,7 @@ cargo +valida build --release
 To run the program, in the Valida shell, from the root directory of this repo:
 
 ```
-valida> valida run ./target/valida-unknown-baremetal-gnu/release/fizzbuzz log
+valida> valida run ./target/valida-unknown-baremetal-gnu/release/unit_tests log
 ```
 
-The `run` command runs the program and asks the user for a number, then prints the numbers from 1 to that number, replacing any number divisible by three with the word "fizz", and any number divisible by five with the word "buzz", and any number divisible by both three and five with the word "fizzbuzz", to the console and the file `log` in the current directory.
+The `run` command runs the program and prints the output to the file `log` in the current directory.

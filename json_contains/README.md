@@ -24,7 +24,7 @@ Run the program in Valida:
 
 ```bash
 valida>
-valida> echo '{"path":"$.foo.bar","expected":{"baz":1},"json":{"foo":{"bar":{"baz":1}}}}' | valida run target/delendum-unknown-baremetal-gnu/release/json_contains log
+valida> echo '{"path":"$.foo.bar","expected":{"baz":1},"json":{"foo":{"bar":{"baz":1}}}}' | valida run target/valida-unknown-baremetal-gnu/release/json_contains log
 path: $.foo.bar
 contains json: {"baz":1}
 ```

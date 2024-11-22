@@ -13,7 +13,7 @@ pub fn main() {
         for j in 0..10 {
             let idx = universe.get_index(i, j);
             let cell = universe.get_cells()[idx] as u8;
-            valida_rs::io::println(cell.to_string().as_str())
+            println!("{}", cell.to_string());
         }
     }
 }
