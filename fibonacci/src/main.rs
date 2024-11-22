@@ -6,10 +6,20 @@ pub fn main() {
     println!("Please enter a number from 0 to 46:");
     // Read a line from stdin and parse it as an u8.
     let n = loop {
-        match valida_rs::io::read_line::<u8>() {
-            Ok(num) => break num,
+        let mut input = String::new();
+        match std::io::stdin().read_line(&mut input) {
+            Ok(_bytes_read) => {
+                match input.trim().parse::<u8>() {
+                    Ok(num) => break num,
+                    Err(e) => {
+                        println!("Error reading input: {}. Please try again:", e);
+                        return;
+                    }
+                }
+            },
             Err(e) => {
                 println!("Error reading input: {}. Please try again:", e);
+                return;
             }
         }
     };
