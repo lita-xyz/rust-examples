@@ -28,7 +28,35 @@ test -d "$test_data_dir" || fail "the test data directory '${test_data_dir}' doe
 test -f "$vm_executable" || fail "the vm executable '${vm_executable}' is not a file, please correctly specify the path to the valida-vm executable in the test script"
 test -x "$vm_executable" || fail "the vm executable '${vm_executable}' is not executable, please correctly specify the path to the valida-vm executable in the test script"
 
-for crate_test_dir in "$test_data_dir"/*
+# Parse command line arguments
+crate_to_test=""
+while getopts "c:" opt; do
+  case $opt in
+    c)
+      crate_to_test="$OPTARG"
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      echo "Usage: $0 [-c crate_name]" >&2
+      exit 1
+      ;;
+  esac
+done
+
+# If a specific crate was specified, verify it exists
+if [ -n "$crate_to_test" ]; then
+  if [ ! -d "$test_data_dir/$crate_to_test" ]; then
+    fail "crate '$crate_to_test' not found in test data directory"
+  fi
+fi
+
+if [ -n "$crate_to_test" ]; then
+  crate_test_dirs=("$test_data_dir/$crate_to_test")
+else
+  crate_test_dirs=("$test_data_dir"/*)
+fi
+
+for crate_test_dir in "${crate_test_dirs[@]}"
 do {
   crate=$(basename "${crate_test_dir}")
 
