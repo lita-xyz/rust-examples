@@ -1,12 +1,10 @@
 [package]
-name = "secp256k1-example"
+name = "secp256k1"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-
-[target.'cfg(not(target_arch = "valida"))'.dependencies]
+getrandom = "0.2.15"
+rand = "0.8.5"
+valida-rs = { git = "https://github.com/lita-xyz/valida-rs.git", branch = "main" }
 secp256k1 = { version = "0.29.1", features = ["rand-std", "hashes"] }
-
-[target.'cfg(target_arch = "valida")'.dependencies]
-secp256k1 = { version = "0.29.1", features = ["hashes"] }
