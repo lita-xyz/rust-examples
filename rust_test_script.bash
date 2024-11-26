@@ -6,10 +6,11 @@
 # For the guessing game crate, it is actually random on the host machine so we need to give it the expected output by hand.
 # To add a new crate to the test, add a directory with the same name as the crate to the test_data directory and put the input file in it.
 # If there is no input, add an empty input file.
-# If the crate has randomness, you will need to give it the expected output by hand. Add the crate name to L48 below.
-# Make sure that you have set the vm_executable variable to the path to the valida-vm executable (on L15 below).
-# If your host is not x86_64 linux, you will need to change the target in the cargo run command on L57 below.
-# Simply run the script with: bash rust_test_script.bash.
+# If the crate has randomness, you will need to give it the expected output by hand. Add the crate name to the RANDOM_CRATES array below.
+# Make sure that you have set the vm_executable variable to the path to the valida-vm executable.
+# If your host is not x86_64 linux, you will need to change the target in the cargo run command.
+# Run the script in the `rust-examples` directory with: bash rust_test_script.bash
+# To test a specific crate: bash rust_test_script.bash -c <crate_name>
 
 # configuration
 test_data_dir='test_data'
