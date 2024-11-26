@@ -63,6 +63,7 @@ do {
   # build crate, silently to avoid polluting the output
   echo "building ${crate}"
   pushd "${crates_dir}/${crate}"
+  cargo clean --quiet
   if ! cargo +valida build --quiet
   then
     echo "failed to build ${crate}"
