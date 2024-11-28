@@ -4,9 +4,9 @@ use sha2::{Sha256, Digest};
 
 #[no_mangle]
 pub fn main() {
-    // Read a 32-byte input
-    let input = match valida_rs::io::read_line::<u32>() {
-        Ok(w) => w,
+    // Read a string input
+    let input = match valida_rs::io::read_line::<String>() {
+        Ok(s) => s,
         Err(e) => {
             valida_rs::io::println(&format!("Error reading input: {}", e));
             return;
@@ -14,7 +14,7 @@ pub fn main() {
     };
     // Create SHA-256 hasher and compute hash
     let mut hasher = Sha256::new();
-    hasher.update(&input.to_be_bytes());
+    hasher.update(input.as_bytes());
     let result = hasher.finalize();
 
     // Output the hash
