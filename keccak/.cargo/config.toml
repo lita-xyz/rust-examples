@@ -1,0 +1,16 @@
+[build]
+target = "delendum-unknown-baremetal-gnu"
+
+[target.delendum-unknown-baremetal-gnu]
+linker = "/valida-toolchain/bin/ld.lld"
+rustflags = [
+    "-C", "link-arg=/valida-toolchain/DelendumEntryPoint.o",
+    "-C", "link-arg=--script=/valida-toolchain/valida.ld",
+    "-C", "link-arg=/valida-toolchain/lib/delendum-unknown-baremetal-gnu/libc.a",
+    "-C", "link-arg=/valida-toolchain/lib/delendum-unknown-baremetal-gnu/libm.a",
+    "-C", "link-arg=--noinhibit-exec",
+]
+
+[env]
+CC_delendum_unknown_baremetal_gnu = "/valida-toolchain/bin/clang"
+CFLAGS_delendum_unknown_baremetal_gnu = "--sysroot=/valida-toolchain/ -isystem /valida-toolchain/include"
