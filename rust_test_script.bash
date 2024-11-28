@@ -6,10 +6,11 @@
 # For the guessing game crate, it is actually random on the host machine so we need to give it the expected output by hand.
 # To add a new crate to the test, add a directory with the same name as the crate to the test_data directory and put the input file in it.
 # If there is no input, add an empty input file.
-# If the crate has randomness, you will need to give it the expected output by hand. Add the crate name to L48 below.
-# Make sure that you have set the vm_executable variable to the path to the valida-vm executable (on L15 below).
-# If your host is not x86_64 linux, you will need to change the target in the cargo run command on L57 below.
-# Simply run the script with: bash rust_test_script.bash.
+# If the crate has randomness, you will need to give it the expected output by hand. Add the crate name to the RANDOM_CRATES array below.
+# Make sure that you have set the vm_executable variable to the path to the valida-vm executable.
+# If your host is not x86_64 linux, you will need to change the target in the cargo run command.
+# Run the script in the `rust-examples` directory with: bash rust_test_script.bash
+# To test a specific crate: bash rust_test_script.bash -c <crate_name>
 
 # configuration
 test_data_dir='test_data'
@@ -28,13 +29,42 @@ test -d "$test_data_dir" || fail "the test data directory '${test_data_dir}' doe
 test -f "$vm_executable" || fail "the vm executable '${vm_executable}' is not a file, please correctly specify the path to the valida-vm executable in the test script"
 test -x "$vm_executable" || fail "the vm executable '${vm_executable}' is not executable, please correctly specify the path to the valida-vm executable in the test script"
 
-for crate_test_dir in "$test_data_dir"/*
+# Parse command line arguments
+crate_to_test=""
+while getopts "c:" opt; do
+  case $opt in
+    c)
+      crate_to_test="$OPTARG"
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      echo "Usage: $0 [-c crate_name]" >&2
+      exit 1
+      ;;
+  esac
+done
+
+# If a specific crate was specified, verify it exists
+if [ -n "$crate_to_test" ]; then
+  if [ ! -d "$test_data_dir/$crate_to_test" ]; then
+    fail "crate '$crate_to_test' not found in test data directory"
+  fi
+fi
+
+if [ -n "$crate_to_test" ]; then
+  crate_test_dirs=("$test_data_dir/$crate_to_test")
+else
+  crate_test_dirs=("$test_data_dir"/*)
+fi
+
+for crate_test_dir in "${crate_test_dirs[@]}"
 do {
   crate=$(basename "${crate_test_dir}")
 
   # build crate, silently to avoid polluting the output
   echo "building ${crate}"
   pushd "${crates_dir}/${crate}"
+  cargo clean --quiet
   if ! cargo +valida build --quiet
   then
     echo "failed to build ${crate}"
