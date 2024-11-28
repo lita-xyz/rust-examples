@@ -20,8 +20,10 @@ vm_executable='/valida-toolchain/bin/valida'
 
 # utilities
 function fail {
-  echo $1;
-  exit 1
+    local message="$1"
+    local exit_code="${2:-1}"  # Default to 1 if no code provided
+    echo "[ERROR] ${message}" >&2  # Print to stderr
+    exit "$exit_code"
 }
 
 # global sanity check
@@ -67,31 +69,47 @@ do {
   cargo clean --quiet
   if ! cargo +valida build --quiet
   then
-    echo "failed to build ${crate}"
     popd
-    continue
+    fail "failed to build ${crate}"
   fi
-  popd
-
+  
   # test crate. Print the diff (empty if equal) and output a success message if actual output matches expected output.
   echo "testing ${crate}"
   # Guessing game is actually random on host, so we need to give it the expected output by hand, not running it on the host
   if [ "$crate" != "guessing_game" ]; then
     # For any crates that don't have randomness, run on native host to generate expected output
-    cargo run --quiet --manifest-path "${crates_dir}/${crate}/Cargo.toml" --target x86_64-unknown-linux-gnu log\
-      < "${crate_test_dir}/input" > "${crate_test_dir}/expected_output"
+    if ! cargo run --target x86_64-unknown-linux-gnu log < "../${test_data_dir}/${crate}/input" > "../${test_data_dir}/${crate}/expected_output" 2>/dev/null; then
+      # Only fail if the actual exit code is non-zero
+      if [ $? -ne 0 ]; then
+        echo "Error: Failed to run ${crate} on host. Exit code: $?" >&2
+        echo "Current directory: $(pwd)" >&2
+        echo "Command was: cargo run --target x86_64-unknown-linux-gnu log < ../test_data/${crate}/input" >&2
+        fail "failed to run ${crate} on host"
+      fi
+    fi
   fi
 
   # Run on Valida VM to generate the actual output
-  "$vm_executable" run "${crates_dir}/${crate}/target/valida-unknown-baremetal-gnu/debug/${crate}" log \
-    < "${crate_test_dir}/input" > "${crate_test_dir}/actual_output"
-  diff <(tr -d '\n' < "${crate_test_dir}/actual_output") <(tr -d '\n' < "${crate_test_dir}/expected_output") && echo "${crate} execution test passed"
+  if ! "$vm_executable" run "./target/valida-unknown-baremetal-gnu/debug/${crate}" log < "../${crate_test_dir}/input" > "../${crate_test_dir}/actual_output"; then
+    fail "failed to run ${crate} on Valida VM"
+  fi
+
+  if ! diff <(tr -d '\n' < "../${crate_test_dir}/actual_output") <(tr -d '\n' < "../${crate_test_dir}/expected_output"); then
+    fail "${crate} execution test failed - outputs differ"
+  fi
+  echo "${crate} execution test passed"
 
   # Prove and verify
   echo "PROVING $crate"
-  "$vm_executable" prove "${crates_dir}/${crate}/target/valida-unknown-baremetal-gnu/debug/${crate}" proof \
-    < "${crate_test_dir}/input" > "${crate_test_dir}/actual_output"
+  if ! "$vm_executable" prove "./target/valida-unknown-baremetal-gnu/debug/${crate}" proof < "../${crate_test_dir}/input" > "../${crate_test_dir}/actual_output"; then
+    fail "failed to prove ${crate}"
+  fi
+
   echo "VERIFYING $crate"
-  "$vm_executable" verify "${crates_dir}/${crate}/target/valida-unknown-baremetal-gnu/debug/${crate}" proof -o log
+  if ! "$vm_executable" verify "./target/valida-unknown-baremetal-gnu/debug/${crate}" proof -o log; then
+    fail "failed to verify ${crate}"
+  fi
+
+  popd
 }
 done
