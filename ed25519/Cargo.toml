@@ -1,0 +1,10 @@
+[package]
+name = "ed25519"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+valida-rs = { git = "https://github.com/lita-xyz/valida-rs.git", branch = "main" }
+ed25519-dalek = { git = "https://github.com/lita-xyz/curve25519-dalek.git", branch = "main", features = ["rand_core"] }
+hex = "0.4"
+rand = "0.8"
