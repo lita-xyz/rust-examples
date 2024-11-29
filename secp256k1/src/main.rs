@@ -6,30 +6,29 @@ use secp256k1::ecdsa::Signature;
 use secp256k1::hashes::{sha256, Hash};
 use secp256k1::{Message, PublicKey, Secp256k1};
 
-use secp256k1::rand::rngs::OsRng;
+use secp256k1::rand::{rngs::StdRng, SeedableRng};
 
 const MSG: &str = "Hello World!";
+const PRNG_SEED: u64 = 0xdeadbeefdeadbeef;  // Same seed as valida-rs
 
 fn print_fresh_keypair_and_signature() {
-    use std::io::Write;
-
+    // Create deterministic RNG with valida-rs seed
+    let mut rng = StdRng::seed_from_u64(PRNG_SEED);
+    
     let secp = Secp256k1::new();
-    let (secret_key, public_key) = secp.generate_keypair(&mut OsRng);
+    let (secret_key, public_key) = secp.generate_keypair(&mut rng);
     let digest = sha256::Hash::hash(MSG.as_bytes());
     let message = Message::from_digest(digest.to_byte_array());
 
     let serialized_public_key = public_key.serialize();
     let signature = secp.sign_ecdsa(&message, &secret_key);
-
-    std::io::stdout().write(&serialized_public_key).unwrap(); // 33 bytes
-    std::io::stdout().write(secret_key.as_ref()).unwrap(); // 32 bytes
-    std::io::stdout()
-        .write(&signature.serialize_compact())
-        .unwrap(); // 64 bytes
-
-    // use
-    // xxd -p -c1 output | sed 's/^/0x/' | paste -sd ',' -
-    // to dump concatenated keys and signature on host
+    
+    println!(
+        "Public key: {}\nSecret key: {}\nSignature: {}",
+        hex::encode(&serialized_public_key),
+        hex::encode(secret_key.as_ref()),
+        hex::encode(&signature.serialize_compact())
+    );
 }
 
 fn verify_signature_based_on_hardcoded_signature_and_public_key() {
