@@ -8,3 +8,4 @@ getrandom = "0.2.15"
 rand = "0.8.5"
 valida-rs = { git = "https://github.com/lita-xyz/valida-rs.git", branch = "main" }
 secp256k1 = { version = "0.29.1", features = ["rand-std", "hashes"] }
+hex = "0.4.3"
