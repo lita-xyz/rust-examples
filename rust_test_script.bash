@@ -11,6 +11,7 @@
 # If your host is not x86_64 linux, you will need to change the target in the cargo run command.
 # Run the script in the `rust-examples` directory with: bash rust_test_script.bash
 # To test a specific crate: bash rust_test_script.bash -c <crate_name>
+# If you want to indicate that a crate is failing, move it's test data to the 'failing' directory.
 
 # configuration
 test_data_dir='test_data'
@@ -56,7 +57,13 @@ fi
 if [ -n "$crate_to_test" ]; then
   crate_test_dirs=("$test_data_dir/$crate_to_test")
 else
-  crate_test_dirs=("$test_data_dir"/*)
+  # Get all test directories except failing
+  crate_test_dirs=()
+  for dir in "$test_data_dir"/*; do
+    if [ "$(basename "$dir")" != "failing" ]; then
+      crate_test_dirs+=("$dir")
+    fi
+  done
 fi
 
 for crate_test_dir in "${crate_test_dirs[@]}"
