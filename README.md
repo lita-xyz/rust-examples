@@ -1,5 +1,7 @@
 # Rust-Examples
 
+**ATTENTION: This repository is archived. For the latest versions of these examples, please see [the latest release bundle for the Valida toolchain](https://github.com/lita-xyz/valida-releases/releases).
+
 ## General Description
 
 This project is a collection of various applications built using the Valida framework, which allows for the execution of Rust code with proofs of correctness. Each application serves as a template for demonstrating different functionalities, from simple calculations to more complex algorithms like Conway's Game of Life. The goal of this project is to provide a set of examples that can be used as a foundation for developing more advanced applications while ensuring correctness through formal verification.
