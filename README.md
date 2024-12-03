@@ -1,6 +1,6 @@
 # Rust-Examples
 
-**ATTENTION: This repository is archived. For the latest versions of these examples, please see [the latest release bundle for the Valida toolchain](https://github.com/lita-xyz/valida-releases/releases).
+**ATTENTION: This repository is archived. For the latest versions of these examples, please see [the latest release bundle for the Valida toolchain](https://github.com/lita-xyz/valida-releases/releases).**
 
 ## General Description
 
