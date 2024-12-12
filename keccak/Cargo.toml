@@ -1,0 +1,9 @@
+[package]
+name = "keccak"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base16ct = "0.2"
+entrypoint = { git = "https://github.com/lita-xyz/valida-rs.git", branch = "main" }
+tiny-keccak = { version = "2.0.2", features = ["keccak"] }
